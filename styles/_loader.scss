@@ -1,0 +1,154 @@
+// ==========================================================================
+// ★ LOADER
+// ========================================================================== 
+.loader {
+  display: none;
+  position: fixed;
+  &.loading {
+    display: block;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    opacity: .75;
+    z-index: 10000;
+  }
+  
+  // Settings
+  $size: 4.5rem;
+  $speed: 2.25s;
+
+  // Container Settings
+  $bottleHeight: $size;
+  $bottleRadius: $size * 0.02;
+  $bottleColor: #33B3E5;
+  $bottleBackground: white;
+  $bottleHighlight: rgba($bottleBackground, 0.325);
+
+  // Liquid Settings
+  $liquidSize: $size / 4;
+  $liquidOffset: $liquidSize / -2.25;
+  $liquidColor: #33B3E5;
+
+  // Styles for bottle, cap, and highlight
+  .bottle {
+    display: inline-block;
+    position: absolute;
+    width: $size / 2;
+    height: $size;
+    top: 45%;
+    left: 50%;
+    margin-top: -36px;
+    margin-left: -18px;
+    background: $bottleBackground;
+    border-radius: $bottleRadius;
+    box-shadow: 0 0 0 0.2rem $bottleColor;
+    .cap-strap {
+      position: absolute;
+      width: 20px;
+      height: 13px;
+      top: -16px;
+      left: -13px;
+      background: transparent;
+      border-radius: 20px;
+      border: 3px solid #000;
+      z-index: 1;
+    }
+    // Cap
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0rem;
+      top: -1.0375rem;
+      height: 1.0375rem;
+      width: 2.2rem;
+      background: #000;
+      border-radius: 0.18rem;
+      border-bottom: 10px solid grey;
+      z-index: 2;
+    }
+    
+    // Highlight
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-right: ($size * 0.5) solid transparent;
+      border-bottom: ($size - 0.45) solid $bottleHighlight;
+    }
+  }
+
+  // Styles for liquid
+  .liquid {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: $size / 2;
+    background: $liquidColor;
+    @include animation(load $speed infinite);
+    will-change: top, height, opacity;
+    
+    // Bubbles
+    &:after,
+    &:before {
+      content: '';
+      position: absolute;
+      top: $liquidOffset;
+      height: $liquidSize;
+      width: $liquidSize * 1.3;
+      background: $liquidColor;
+      border-radius: 50%;
+      opacity: 0;
+      will-change: top, height, opacity;
+    }
+    
+    &:after {
+      right: 0;
+      @include animation(liquid-1 $speed infinite);
+    }
+    
+    &:before {
+      left: 0;
+      @include animation(liquid-2 $speed infinite);
+    }
+  }
+  
+  // Loading Keyframes
+  @include keyframes(load) {
+    0% { top: $size; }
+    70% { top: $size * 0.25; }
+    90% { top: 0; }
+    95% { top: 0; }
+    100% { top: $size; }
+  }
+
+  // Wave Keyframes
+  @include keyframes(liquid-1) {
+    0% { height: 0; opacity: 0; top: $liquidOffset; }
+    22% { height: $liquidSize * 0.25; top: $liquidOffset * -0.75; opacity: 1; }
+    25% { top: $liquidOffset * 0.5; }
+    35% { height: $liquidSize * 1; top: $liquidOffset * 1; }
+    55% { height: $liquidSize * 0.25; top: $liquidOffset * 0.25; }
+    60% { height: $liquidSize * 0.55; opacity: 1; top: $liquidOffset * 0.55; }
+    96% { height: $liquidSize * 0.75; opacity: 0; top: $liquidOffset * -1; }
+    100% { height: 0; opacity: 0; }
+  }
+
+  @include keyframes(liquid-2) {
+    0% { height: 0; opacity: 0; top: $liquidOffset; }
+    17% { height: $liquidSize * 0.25; top: $liquidOffset * -0.4; opacity: 1; }
+    20% { top: $liquidOffset * 0.5; }
+    25% { height: $liquidSize * 1.25; top: $liquidOffset * 1.25; }
+    45% { height: $liquidSize * 0.25; top: $liquidOffset * 0.25; }
+    60% { height: $liquidSize * 1.25; opacity: 1; top: $liquidOffset; }
+    96% { height: $liquidSize * 0.75; opacity: 0; top: $liquidOffset * -1; }
+    100% { height: 0; opacity: 0; }
+  }
+}

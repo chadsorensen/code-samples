@@ -1,0 +1,61 @@
+<%= form_for :consumer, url: register_consumer_path(@event.client, @event) do |f| %>
+  <span class="validate input input-<%= @event.theme %>">
+    <%= f.text_field :first_name, :required => true, class: "required-true input-field input-field-#{@event.theme}" %>
+    <label class="input-label input-label-<%= @event.theme %>" for="consumer_first_name" data-content="*First Name">
+      <span class="input-label-content input-label-content-<%= @event.theme %>">*First Name</span>
+    </label>
+  </span>
+
+  <span class="validate input input-<%= @event.theme %>">
+    <%= f.text_field :last_name, :required => true, class: "required-true input-field input-field-#{@event.theme}" %>
+    <label class="input-label input-label-<%= @event.theme %>" for="consumer_last_name" data-content="*Last Name">
+      <span class="input-label-content input-label-content-<%= @event.theme %>">*Last Name</span>
+    </label>
+  </span>
+
+  <span class="validate input input-<%= @event.theme %>">
+    <%= f.email_field :email_address, :required => true, class: "required-true email input-field input-field-#{@event.theme}" %>
+    <label class="input-label input-label-<%= @event.theme %>" for="consumer_email_address" data-content="*Email">
+      <span class="input-label-content input-abel-content-<%= @event.theme %>">*Email</span>
+    </label>
+  </span>
+
+  <% if @event.optin_copy? %>
+    <span class="validate checkbox-holder">
+      <%= f.check_box :optin,  :required => @event.optin_required, class: "required-#{@event.optin_required} checkbox" %> 
+      <label for="consumer_optin"><%= @event.optin_copy %></label>
+    </span><br>
+  <% end %>
+
+  <% if @event.terms_required? %>
+    <span class="validate checkbox-holder">
+      <%= f.check_box :accepted_terms, :required => true, class: "required-true checkbox"  %>
+      <label for="consumer_terms_copy">By clicking ok you agree to our <span class="trigger underline" data-dialog="dialog" title="terms of service">terms of service</span></label>
+    </span>
+  <% else %>
+    <% if @event.terms_copy? %>
+      <%= f.hidden_field :accepted_terms, :value => '1'  %>
+      <label for="consumer_terms_copy">By subscribing you agree to our <span class="trigger underline" data-dialog="dialog" title="terms of service">terms of service</span></label>
+    <% end %>
+  <% end %>
+
+  <%= f.hidden_field :event_id %>
+
+  <%= f.submit "Subscribe", class: 'btn btn-4 btn-4a icon-arrow-right' %>
+<% end %>
+
+
+<div id="dialog" class="dialog">
+  <div class="dialog-overlay"></div>
+  <div class="dialog-content">
+    <div class="morph-shape">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 560 280" preserveAspectRatio="none">
+        <rect x="3" y="3" fill="none" width="556" height="276"></rect>
+      </svg>
+    </div>
+    <div class="dialog-inner">
+      <div><button class="action" data-dialog-close=""></button></div>
+      <%== @event.terms_copy %>
+    </div>
+  </div>
+</div>

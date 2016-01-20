@@ -1,0 +1,149 @@
+<section id="tight-finder" class="tights-finder-landing product-finder"></section>
+
+<script type="text/template" id="tights-landing">
+  <div class="column left">
+    <article>
+      <div class="flyout-trigger right bottom">        
+        <a href="#!" class="explore-btn" title="" onclick="tagPageElement('CLP:INTERACTIVE', 'CLP:INTERACTIVE|WOMENS|TRAINING|2|RISE');"><span class="vertical"></span><span class="horizontal"></span></a>
+        <div class="flyout">
+          <p>Our innovative smoothing waistband helps flatter your tummy. Choose from mid or high-rise.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+  
+  <div class="column right">
+    
+    <div class="row top">    
+      <article class="shop-landing">
+        <h1>shop tights</h1>
+        <h2>introducing the booty-lifting performer tight</h2>
+        <a href="#!" class="womens-btn black explore category-level-link" title="" onclick="tagPageElement('CLP:INTERACTIVE', 'CLP:INTERACTIVE|WOMENS|TRAINING|2|EXP');">explore performer tights</a>
+        <a href="http://www.adidas.com/us/apparel-women-s-pants/_/N-sxZu3Z1z13xg4" class="womens-btn black" title="">shop all tights</a>
+      </article>
+      <article class="half">
+        <div class="flyout-trigger left bottom">        
+          <a href="#!" class="explore-btn" title="" onclick="tagPageElement('CLP:INTERACTIVE', 'CLP:INTERACTIVE|WOMENS|TRAINING|2|POCKET');"><span class="vertical"></span><span class="horizontal"></span></a>
+          <div class="flyout">
+            <p>Store your cash, credit card or key in the hidden waistband pocket.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="row bottom">      
+      <article class="full">
+        <div class="flyout-trigger left top">        
+          <a href="#!" class="explore-btn" title="" onclick="tagPageElement('CLP:INTERACTIVE', 'CLP:INTERACTIVE|WOMENS|TRAINING|2|BACK');"><span class="vertical"></span><span class="horizontal"></span></a>
+          <div class="flyout">
+            <p>Rotating seams help shape legs and lift booty.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+  </div>
+</script>
+<script type="text/template" id="tights-grid">
+  <div class="pf-grid-content">
+    <div class="categories"></div>
+    <div class="products"></div>
+  </div>
+</script>
+<script type="text/template" id="tights-category-btn">
+  <a class="category-level-link" onclick="tagPageElement('CLP:INTERACTIVE', 'CLP:INTERACTIVE|WOMENS|TRAINING|2|<%= coremetricsName %>');"><%= name %></a>
+  <a class="category-level-text" onclick="tagPageElement('CLP:INTERACTIVE', 'CLP:INTERACTIVE|WOMENS|TRAINING|2|<%= coremetricsName %>');"><%= text %></a>
+</script>
+<script type="text/template" id="tights-product-list-item">
+  <div class="product-list-item-image">
+    <img src="<%= thumb %>" width="460">
+  </div>
+
+  <div class="product-list-item-name" >
+    <h4><%= name %></h4>
+    <span>select</span>
+  </div>
+</script>
+<script type="text/template" id="tights-product">
+  <div class="pf-product-content">
+    <div class="product-content-wrapper">
+
+        <div class="product-copy">
+          <h4>Performer Tight</h4>
+          <div class="related"></div>
+          <p><%= headline %></p>
+        </div>
+
+        <div class="thumb-patterns">
+          <% _.each(patterns, function(pattern) { %>
+            <a class="thumb-pattern" data-pattern-index="<%= pattern.index %>" data-sku="<%= pattern.link %>" onclick="tagPageElement('CLP:INTERACTIVE', 'CLP:INTERACTIVE|WOMENS|TRAINING|2|EXP|<%= coremetricsName %>|CLR<%= (pattern.index + 1) %>');">
+              <img src="<%= pattern.source %>" alt="">
+            </a>
+          <% }); %>
+        </div>
+
+        <div class="thumbnails tights-thumbs">
+          <% _.each(patterns[0].images, function(image) { %>
+            <a class="tight-thumb" data-pattern-index="<%= image.patternindex %>" data-image-index="<%= image.imagenumber %>" onclick="tagPageElement('CLP:INTERACTIVE', 'CLP:INTERACTIVE|WOMENS|TRAINING|2|EXP|<%= coremetricsName %>|CLR<%= (image.patternindex + 1) %>|IMG<%= (image.imagenumber + 1) %>');">
+                <img src="<%= image.source %>" height="175" />
+            </a>
+          <% }); %>
+        </div>
+
+        <div class="buy-module shop">
+          <p class="price price-space-bottom"></p>
+
+          <div class="buy-button-area">
+            <div class="size-option option">
+              <div class="option-trigger">
+                <span class="label">size</span>
+                <span class="arrow">X</span>
+              </div>
+              <div class="scroll-wrapper option-overflow-wrapper">
+                <div class="scroll-content">
+                  <ul id="size-options" class="options"></ul>
+                </div>
+                <div class="scroll-bar"><span class="knob"></span></div>
+              </div>
+            </div>
+            <div class="quantity-option option">
+              <div class="option-trigger disabled">
+                <span class="label">qty:</span>
+                <span class="arrow">X</span>
+              </div>
+              <div class="scroll-wrapper option-overflow-wrapper">
+                <div class="scroll-content">
+                  <ul id="quantity-options" class="options"></ul>
+                </div>
+                <div class="scroll-bar"><span class="knob"></span></div>
+              </div>
+            </div>
+            <a class="button white add-to-cart" href="#!" data-sku="<%= patterns[0].link %>" data-quantity="" manual_cm_sp="">
+              <span class="icn-center icon-bag"></span>
+              <span class="add-text">add to bag</span>
+              <span class="total">(1)</span>
+            </a>
+          </div>
+          <a href="http://www.adidas.com/us/apparel-women-s-pants/_/N-sxZu3Z1z13xg4" class="shop-btn white" target="_blank" manual_cm_sp="CLP_TRAINING|WOMENS-_-2-_-<%= coremetrics_tag %>_ShopCTA">shop all tights</a>
+        </div>
+
+        <div class="share">
+          <a href="#" class="twitter ir" onclick="tagPageElement('CLP:INTERACTIVE', 'CLP:TWITTER|TWEET|WOMENS|TRAINING|BRAS');">twitter</a>
+          <a href="#" class="pinterest ir" onclick="tagPageElement('CLP:INTERACTIVE', 'CLP:PINTEREST|PIN|WOMENS|TRAINING|COLLECTIONS');">pinterest</a>
+          <a href="#" class="facebook ir" onclick="tagPageElement('CLP:INTERACTIVE', 'CLP:FACEBOOK|LIKE|WOMENS|TRAINING|BRAS');">facebook</a>
+        </div>
+
+      </div>
+
+      <div class="product-image" data-share-image="<%= share_image %>" id="cat-<%= id %>-<%= patterns[0].images[0].imagenumber %>">
+        <img src="<%= patterns[0].images[0].source %>" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true',sizingMethod='crop',src='<%= patterns[0].images[0].source %>')" class="<%= patterns.x %>" />
+      </div>
+  </div>
+</script>
+<script type="text/template" id="tights-thumbs">
+<% _.each(pattern.images, function(image) { %>
+  <a class="tight-thumb" data-pattern-index="<%= image.patternindex %>" data-image-index="<%= image.imagenumber %>" onclick="tagPageElement('CLP:INTERACTIVE', 'CLP:INTERACTIVE|WOMENS|TRAINING|2|EXP|<%= coremetricsName %>|CLR<%= (image.patternindex + 1) %>|IMG<%= (image.imagenumber + 1) %>');">
+      <img src="<%= image.source %>" height="175" />
+  </a>
+<% }); %>
+</script>
